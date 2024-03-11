@@ -1,197 +1,200 @@
-body {
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
-}
-
-.container {
-    display: flex;
     flex-direction: column;
-    width: 320px;
-    height: 90vh;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
 }
 
-.assistance {
+header {
+    background-color: #d9feff;
+    border-radius: 0 0 30px 30px;
+    height: 25vh;
+    width: 80vw;
     display: flex;
-    flex-direction: row;
-    width: 320px;
+    flex-direction: column;
     justify-content: space-evenly;
-}
-
-#pinwheel {
-    width: 250px;
-    height: 400px;
-    background-color: #ffffff;
-    border-radius: 6px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
     align-items: center;
-    justify-content: center;
-}
-
-#choicecircle {
-    width: 210px;
-    height: 280px;
-    border-radius: 50%;
-    background-color: #ffffff;
-    box-shadow: inset 0 0 4px 4px #838383;
     position: absolute;
-    mix-blend-mode: multiply;
-    z-index: 15;
+    top: 0;
+    box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.5);
+    z-index: 50;
 }
 
-#overlay {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgb(255, 255, 255) 1%, rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 0) 85%, rgba(255, 255, 255, 1) 99%);
-    mix-blend-mode: screen;
+#help {
     position: absolute;
-    z-index: 5;
+    right: 20px;
+    top: 20px;
 }
-
-#colorborder {
-    width: 91%;
-    height: 94%;
-    border: 12px ridge red;
-    position: absolute;
-    z-index: 10;
-}
-
-.reel {
-    width: 250px;
-    height: 1499px;
-    /*overflow: hidden;*/
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    transform: translate(-50%,-300px);
-    /*animation: spinReel 12s linear infinite;*/
-}
-
-.picture {
-    margin: 0 auto;
-}
-
-/*#button {
-    background: radial-gradient(rgb(180, 23, 196) 30%, rgba(0, 0, 0, 1) 90%);
-    padding: 30px 66px;
-    !*border: 3px solid red;*!
-    border-radius: 50%;
-    z-index: 1;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    box-shadow: 0 4px 0 0 #4f0155;
-    transform: translate(-50%, -50%);
-    transition: transform 0.2s;
-}
-
-#button:active {
-    transform: translate(-50%, -40%);
-}
-
-.button {
-    position: relative;
-    width: 180px;
-    height: 180px;
-}
-
-#rectangle {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    width: 120px;
-    height: 12px;
-    border-radius: 2px;
-    background-color: #4f0155;
-    border: 6px solid #4f0155;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-}
-
-#circle {
-    position: absolute;
-    top: 65%;
-    left: 50%;
-    width: 120px;
-    height: 60px;
-    background-color: #4f0155;
-    border: 6px solid #4f0155;
-    border-radius: 50%;
-    box-shadow: 8px 8px 4px 2px rgba(0, 0, 0, 0.3);
-    transform: translate(-50%, -50%);
-    z-index: -2;
-}
-*/
-
-/**/
 
 #slots {
-    width: 320px;
-    margin-top: 20px;
+    width: 180px;
+    margin-top: 40px;
     display: flex;
     justify-content: space-between;
 }
 
 .slot {
-    width: 60px;
-    height: 60px;
-    border: 4px solid #000;
-    border-radius: 6px;
-    box-shadow: inset 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+    width: 24px;
+    height: 24px;
+    border: 3px solid #19767a;
+    border-radius: 50%;
+    box-shadow: inset 2px 2px 2px 0 rgba(0, 0, 0, 0.5);
 }
-.assistance div {
+
+.assistance {
+    width: 250px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .assistance button {
-    height: 80px;
-    width: 80px;
-    border-radius: 50%;
-    background-color: white;
+    height: 60px;
+    border-radius: 10px;
     border: none;
-    box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s;
+    box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.5);
 }
 
-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.rectangular-button {
+    width: 150px;
+    background-color: white;
+}
+
+.square-button {
+    width: 60px;
+    background-color: #EB3148;
 }
 
 button svg {
-    fill: grey;
-    height: 50px;
+    fill: #8d8d8d;
+    height: 40px;
 }
 
 
-/*
-@keyframes spinReel {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-100%);
-    }
-}*/
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
+main {
+    height: 100%;
+    background-color: #EB3148;
+}
+
+.gradient {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    z-index: 5;
+    background: rgba(143, 143, 143, 0.8);
+    mix-blend-mode: screen;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 100vh; /* Adjust as needed */
+}
+
+.reel-container {
+    position: relative;
+    height: 80vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.reel {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 0;
+    left: 50%;
+    transition: top 0.3s ease;
+}
+
+.reel img {
+    height: 250px;
+    width: auto;
+}
+
+.upanddown {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    height: 560px;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+.upanddown button {
+    background: none;
+    border: none;
+}
+
+.upanddown button svg {
+    height: 120px;
+}
+
+#shadow {
+    transform: translateY(6px);
+    mix-blend-mode: multiply;
+}
+
+.highlight {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 60%;
+    left: 50%;
+    border-radius: 50%;
+    background: #8f8f8f;
+    mix-blend-mode: color-burn;
+    z-index: 8;
+}
+
+.shadow {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    transform: translate(-50%, -48%);
+    top: 60%;
+    left: 50%;
+    border-radius: 50%;
+    border: 10px solid #868686;
+    mix-blend-mode: multiply;
+    z-index: 9;
+}
+
+#choicecircle {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 60%;
+    left: 50%;
+    border-radius: 50%;
+    border: 10px solid white;
+    /*box-shadow: 0 6px 2px 0 rgba(0, 0, 0, 0.5);*/
+    mix-blend-mode: hard-light;
+    z-index: 99;
+}
 
 #success {
-    width: 400px;
-    height: 520px;
-    background: green;
+    width: 100%;
+    height: 70%;
+    background: #2EC998;
     position: absolute;
-    transform: translateY(50%);
     z-index: 100;
     display: none; /* Initially hidden */
 }
