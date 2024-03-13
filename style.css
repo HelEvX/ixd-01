@@ -17,8 +17,8 @@ body {
 header {
     background-color: #d9feff;
     border-radius: 0 0 30px 30px;
-    height: 250px;
-    width: 380px;
+    height: 210px;
+    width: 390px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -51,7 +51,7 @@ header {
 }
 
 .assistance {
-    width: 250px;
+    width: 290px;
     display: flex;
     justify-content: space-between;
 }
@@ -64,12 +64,12 @@ header {
 }
 
 .rectangular-button {
-    width: 150px;
+    width: 186px;
     background-color: white;
 }
 
 .square-button {
-    width: 60px;
+    width: 83px;
     background-color: #EB3148;
 }
 
@@ -87,14 +87,8 @@ main {
     background-color: #EB3148;
 }
 
-.gradient {
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    z-index: 5;
-    background: rgba(143, 143, 143, 0.8);
-    mix-blend-mode: screen;
-    mask: radial-gradient(circle at 50% 600px, transparent 150px, black 0);
+.mask {
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%);
 }
 
 .wrapper {
@@ -115,7 +109,8 @@ main {
 .reel {
     position: absolute;
     width: 200px;
-    top: -130px;
+    top: 90px;
+    transform: translateY(0);
     transition: top 0.3s ease;
 }
 

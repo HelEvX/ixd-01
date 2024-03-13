@@ -15,20 +15,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function moveUp() {
         currentPosition += imageHeight;
-        const remainder = currentPosition % imageHeight;
-        currentPosition -= remainder;
         reel.style.transition = "transform 0.5s ease-in-out";
         reel.style.transform = `translateY(${currentPosition}px)`;
     }
-
+    
     function moveDown() {
         currentPosition -= imageHeight;
-        const remainder = currentPosition % imageHeight;
-        currentPosition -= remainder;
         reel.style.transition = "transform 0.5s ease-in-out";
         reel.style.transform = `translateY(${currentPosition}px)`;
     }
-
 
     upButton.addEventListener("click", moveUp);
     downButton.addEventListener("click", moveDown);
