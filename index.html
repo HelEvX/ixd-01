@@ -56,14 +56,19 @@
 
 <main id="colorborder">
 
-    <div class="gradient"></div>
+    <!--<div class="gradient"></div>-->
 
 
     <div class="wrapper">
         <div class="reel-container">
+            <div class="reel" id="reel1">
+                <img class="leeuw" src="assets/leeuw.svg" alt="leeuw">
+                <img class="giraf" src="assets/giraf.svg" alt="giraf">
+                <img class="koe" src="assets/koe.svg" alt="koe">
+                <img class="krokodil" src="assets/krokodil.svg" alt="krokodil">
+                <img class="poes" src="assets/poes.svg" alt="poes">
+            </div>
             <div id="choicecircle"></div>
-            <div class="highlight"></div>
-            <div class="shadow"></div>
             <div class="upanddown">
                 <button id="up">
                     <svg width="86" height="69" viewBox="0 0 86 69" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,18 +91,17 @@
                     </svg>
                 </button>
             </div>
-            <div class="reel" id="reel1">
-                <img class="leeuw" src="assets/leeuw.svg" alt="leeuw">
-                <img class="giraf" src="assets/giraf.svg" alt="giraf">
-                <img class="koe" src="assets/koe.svg" alt="koe">
-                <img class="krokodil" src="assets/krokodil.svg" alt="krokodil">
-                <img class="poes" src="assets/poes.svg" alt="poes">
-            </div>
         </div>
     </div>
 
     <!-- Success screen overlay -->
     <div id="success"></div>
+
+    <!-- Invalid PIN screen -->
+    <div id="error" style="display: none;">
+        <p class="error-message">Error: Invalid combination selected. Please try again.</p>
+    </div>
+
 
 </main>
 

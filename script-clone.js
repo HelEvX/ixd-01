@@ -14,23 +14,17 @@ document.addEventListener("DOMContentLoaded", function() {
     let currentPosition = 0;
 
     function moveUp() {
+        currentPosition += imageHeight;
         const remainder = currentPosition % imageHeight;
-        if (remainder !== 0) {
-            currentPosition -= remainder;
-        } else {
-            currentPosition += imageHeight;
-        }
+        currentPosition -= remainder;
         reel.style.transition = "transform 0.5s ease-in-out";
         reel.style.transform = `translateY(${currentPosition}px)`;
     }
 
     function moveDown() {
+        currentPosition -= imageHeight;
         const remainder = currentPosition % imageHeight;
-        if (remainder !== 0) {
-            currentPosition -= remainder;
-        } else {
-            currentPosition -= imageHeight;
-        }
+        currentPosition -= remainder;
         reel.style.transition = "transform 0.5s ease-in-out";
         reel.style.transform = `translateY(${currentPosition}px)`;
     }

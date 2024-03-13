@@ -7,13 +7,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const choiceCircle = document.getElementById('choicecircle');
     const undoButton = document.getElementById('undoButton'); // Get the Undo button
     const soundButton = document.getElementById('soundButton'); // Get the sound button
+    const reel = document.querySelector('.reel');
+    const images = reel.querySelectorAll('img');
+    const successOverlay = document.getElementById('success');
+    const errorOverlay = document.getElementById('error');
     let clickCount = 0; // Variable to track the number of button clicks
     let overlayVisible = false; // Variable to track whether the overlay is visible
+    let selectedImages = [];
 
     // Create Audio object for the ping sound
     const pingSound = new Audio('assets/ping.wav');
 
-    if (redSlot && yellowSlot && blueSlot && greenSlot && colorBorder && choiceCircle && undoButton && soundButton) {
+    if (redSlot && yellowSlot && blueSlot && greenSlot && colorBorder && choiceCircle && undoButton && soundButton && reel && images && successOverlay && errorOverlay) {
         choiceCircle.addEventListener('click', function() {
             if (!overlayVisible) {
                 if (clickCount === 0 || clickCount === 4) {
@@ -72,21 +77,63 @@ document.addEventListener('DOMContentLoaded', function() {
             clickCount = 0;
             overlayVisible = false;
             // Hide the success overlay if visible
-            const successOverlay = document.getElementById('success');
             if (successOverlay) {
                 successOverlay.style.display = 'none';
+            }
+            // Hide the error overlay if visible
+            if (errorOverlay) {
+                errorOverlay.style.display = 'none';
             }
         });
 
         // Function to display the overlay
         function displayOverlay() {
             overlayVisible = true;
-            const successOverlay = document.getElementById('success');
             if (successOverlay) {
                 successOverlay.style.display = 'block';
             }
         }
+
+        // Event listeners for reel images
+        images.forEach(image => {
+            image.addEventListener('click', function() {
+                const selectedImageId = image.getAttribute('id');
+                if (!selectedImages.includes(selectedImageId)) {
+                    selectedImages.push(selectedImageId);
+                    image.classList.add('selected');
+                    if (selectedImages.length === 4) {
+                        // Check if the selected images form a valid combination
+                        if (isValidCombination(selectedImages)) {
+                            successOverlay.style.display = 'block'; // Display success overlay
+                        } else {
+                            errorOverlay.style.display = 'block'; // Display error overlay
+                        }
+                    }
+                }
+            });
+        });
     } else {
-        console.error('Slots, color border, choice circle, undo button, or sound button not found.');
+        console.error('One or more elements not found.');
     }
+
+    // Function to check if the selected images form a valid combination
+    function isValidCombination(selectedImages) {
+        // Define the valid combinations here
+        const validCombinations = [
+            ['leeuw', 'giraf', 'koe', 'krokodil'],
+            ['giraf', 'koe', 'krokodil', 'poes'],
+            // Add more valid combinations as needed
+        ];
+        // Map selected image IDs to animal names
+        const selectedAnimalNames = selectedImages.map(image => {
+            // Extract animal name from image ID (assuming image IDs are in the format 'image-<animal>')
+            return image.split('-')[1];
+        });
+        // Check if any of the valid combinations match the selected animal names
+        return validCombinations.some(combination => {
+            // Check if every animal in the combination is present in the selected animal names
+            return combination.every(animal => selectedAnimalNames.includes(animal));
+        });
+    }
+
 });

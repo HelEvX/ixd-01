@@ -94,6 +94,7 @@ main {
     z-index: 5;
     background: rgba(143, 143, 143, 0.8);
     mix-blend-mode: screen;
+    mask: radial-gradient(circle at 50% 600px, transparent 150px, black 0);
 }
 
 .wrapper {
@@ -108,6 +109,7 @@ main {
     justify-content: center;
     height: 100vh;
     width: 100vw;
+    overflow: hidden;
 }
 
 .reel {
@@ -149,32 +151,6 @@ main {
     mix-blend-mode: multiply;
 }
 
-.highlight {
-    width: 300px;
-    height: 300px;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 600px;
-    left: 50%;
-    border-radius: 50%;
-    background: #8f8f8f;
-    mix-blend-mode: color-burn;
-    z-index: 8;
-}
-
-.shadow {
-    width: 300px;
-    height: 300px;
-    position: absolute;
-    transform: translate(-50%, -48%);
-    top: 600px;
-    left: 50%;
-    border-radius: 50%;
-    border: 10px solid #868686;
-    mix-blend-mode: multiply;
-    z-index: 9;
-}
-
 #choicecircle {
     width: 300px;
     height: 300px;
@@ -184,9 +160,7 @@ main {
     left: 50%;
     border-radius: 50%;
     border: 10px solid white;
-    /*box-shadow: 0 6px 2px 0 rgba(0, 0, 0, 0.5);*/
-    mix-blend-mode: hard-light;
-    z-index: 99;
+    fill: none;
 }
 
 #success {
