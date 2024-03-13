@@ -5,17 +5,17 @@ document.addEventListener("DOMContentLoaded", function() {
     const soundButton = document.getElementById('soundButton'); // Add sound button variable
 
     // Initial position of the reel
-    let currentPosition = 0;
+    let currentPosition = -104;
 
     // Function to move the reel up
     function moveUp() {
-        currentPosition -= 250;
+        currentPosition -= 204;
         reel.style.top = currentPosition + "px";
     }
 
     // Function to move the reel down
     function moveDown() {
-        currentPosition += 250;
+        currentPosition += 204;
         reel.style.top = currentPosition + "px";
     }
 
@@ -41,3 +41,4 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 });
+

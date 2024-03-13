@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kids' PIN</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="script-wheel.js"></script>
+    <!--<script defer src="script-wheel.js"></script>-->
     <script defer src="script-slots.js"></script>
+    <script defer src="script-clone.js"></script>
 </head>
 <body>
 
@@ -57,12 +58,12 @@
 
     <div class="gradient"></div>
 
-    <div class="shadow"></div>
-    <div class="highlight"></div>
-    <div id="choicecircle"></div>
 
     <div class="wrapper">
         <div class="reel-container">
+            <div id="choicecircle"></div>
+            <div class="highlight"></div>
+            <div class="shadow"></div>
             <div class="upanddown">
                 <button id="up">
                     <svg width="86" height="69" viewBox="0 0 86 69" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,14 +87,11 @@
                 </button>
             </div>
             <div class="reel" id="reel1">
-                <img class="start" src="assets/leeuw.svg" alt="leeuw">
-                <img src="assets/giraf.svg" alt="giraf">
-                <img src="assets/koe.svg" alt="koe">
-                <img src="assets/krokodil.svg" alt="krokodil">
-                <img src="assets/poes.svg" alt="poes">
-                <img src="assets/leeuw.svg" alt="leeuw">
-                <img src="assets/giraf.svg" alt="giraf">
-                <img src="assets/koe.svg" alt="koe">
+                <img class="leeuw" src="assets/leeuw.svg" alt="leeuw">
+                <img class="giraf" src="assets/giraf.svg" alt="giraf">
+                <img class="koe" src="assets/koe.svg" alt="koe">
+                <img class="krokodil" src="assets/krokodil.svg" alt="krokodil">
+                <img class="poes" src="assets/poes.svg" alt="poes">
             </div>
         </div>
     </div>
