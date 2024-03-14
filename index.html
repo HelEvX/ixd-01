@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="script-slots.js"></script>
     <script defer src="script-clone.js"></script>
+    <!--<script type="text/javascript" async src="https://tenor.com/embed.js"></script>-->
 </head>
 <body>
 
@@ -42,7 +43,7 @@
 <main id="colorborder">
 
     <div class="wrapper">
-        <div class="reel-container">
+        <div class="reel-container mask">
             <div class="reel" id="reel1">
                 <img class="picture leeuw" src="assets/leeuw.svg" alt="leeuw">
                 <img class="picture giraf" src="assets/giraf.svg" alt="giraf">
@@ -50,21 +51,25 @@
                 <img class="picture krokodil" src="assets/krokodil.svg" alt="krokodil">
                 <img class="picture poes" src="assets/poes.svg" alt="poes">
             </div>
-            <div class="upanddown">
-                <button id="up">
-                    <img src="assets/arrow.svg" alt="pijl omhoog">
-                </button>
-                <button id="down">
-                    <img src="assets/arrow.svg" alt="pijl omlaag">
-                </button>
-            </div>
-            <div id="choicecircle"></div>
         </div>
+        <div class="upanddown">
+            <button id="up">
+                <img src="assets/arrow.svg" alt="pijl omhoog">
+            </button>
+            <button id="down">
+                <img src="assets/arrow.svg" alt="pijl omlaag">
+            </button>
+        </div>
+        <div id="choicecircle"></div>
     </div>
 
     <!-- Success screen overlay -->
     <div id="success">
         <img src="assets/success.svg" alt="success">
+        <!--<div class="tenor-gif-embed" data-postid="8257014883927409865" data-share-method="host" data-aspect-ratio="1"
+             data-width="100%"><a
+                href="https://tenor.com/view/thumbs-down-no-don%27t-like-bad-fail-gif-8257014883927409865">Thumbs Down
+            No Sticker</a>from <a href="https://tenor.com/search/thumbs+down-stickers">Thumbs Down Stickers</a></div>-->
     </div>
 
     <!-- Invalid PIN screen -->

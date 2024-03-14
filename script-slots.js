@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
         { position: -204, sound: audioObjects['krokodil'] },
         { position: -408, sound: audioObjects['poes'] },
         { position: -612, sound: audioObjects['leeuw'] },
-        { position: -816, sound: audioObjects['giraf'] }
+        { position: -816, sound: audioObjects['giraf'] },
+        { position: -1020, sound: audioObjects['koe'] }
     ];
 
     const redSlot = document.querySelector('.slot.red');
@@ -34,12 +35,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const undoButton = document.getElementById('undoButton'); // Get the Undo button
     const soundButton = document.getElementById('soundButton'); // Get the sound button
     const reel = document.querySelector('.reel');
-    const images = reel.querySelectorAll('img');
     const successOverlay = document.getElementById('success');
     const errorOverlay = document.getElementById('error');
     let clickCount = 0; // Variable to track the number of button clicks
     let overlayVisible = false; // Variable to track whether the overlay is visible
-    let selectedImages = [];
+    let slotColors = []; // Array to store slot colors
+    let selectedPositions = [];
 
     // Function to toggle the sound button
     function toggleSoundButton() {
@@ -53,22 +54,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event listener for down button
     document.getElementById('down').addEventListener('click', function() {
-        const currentPosition = parseInt(reel.style.transform.match(/-?\d+/)) || 0;
-        const soundButtonActive = soundButton.classList.contains('active');
-        const reelAtInitialPosition = currentPosition === 0;
-
-        if (reelAtInitialPosition && soundButtonActive) {
-            audioObjects['krokodil'].currentTime = 0; // Reset the audio to the beginning
-            audioObjects['krokodil'].play(); // Play the krokodil sound
-        }
-
-        // Move the reel down
         moveReelAndPlaySound(-204);
+    });
+
+    // Event listener for up button
+    document.getElementById('up').addEventListener('click', function() {
+        moveReelAndPlaySound(204);
     });
 
     // Function to move the reel and play sound
     function moveReelAndPlaySound(direction) {
-        const currentPosition = parseInt(reel.style.transform.match(/-?\d+/)) || 0;
+        const currentPosition = parseInt((reel.style.transform.match(/-?\d+/) || [])[0]) || 0;
         const newPosition = currentPosition + direction;
 
         // Move the reel to the new position
@@ -106,61 +102,82 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event listener for the choice circle
     choiceCircle.addEventListener('click', function() {
         if (!overlayVisible) {
-            // Play ping sound only if the sound button is toggled ON
-            if (soundButton.classList.contains('active')) {
-                audioObjects['ping'].currentTime = 0; // Reset the audio to the beginning
-                audioObjects['ping'].play(); // Play the ping sound
+            // Increase click count
+            clickCount++;
+
+            // Get the current reel position
+            const currentPosition = parseInt((reel.style.transform.match(/-?\d+/) || [])[0]) || 0;
+
+            // Check if the clicked position matches the correct position for the current click count
+            if (clickCount === 1) {
+                // Position for first click is -612
+            } else if (clickCount === 2) {
+                // Position for second click is -408
+            } else if (clickCount === 3) {
+                // Position for third click is -816
+            } else if (clickCount === 4) {
+                // Position for fourth click is -204
             }
 
-            // Handle other functionality for choiceCircle button
-            if (clickCount === 0 || clickCount === 4) {
-                // First click or when all slots are emptied: Turn the first slot red and border yellow
-                clickCount = 1; // Reset the click count to 1
-                redSlot.style.backgroundColor = '#EB3148';
-                colorBorder.style.backgroundColor = '#FCB201';
-            } else if (clickCount === 1) {
-                // Second click: Turn the second slot yellow and border blue, and fill the red slot
-                clickCount = 2; // Increment the click count to 2
-                yellowSlot.style.backgroundColor = '#FCB201';
-                colorBorder.style.backgroundColor = '#3ABFF0';
-                redSlot.style.backgroundColor = '#EB3148'; // Fill the red slot
-            } else if (clickCount === 2) {
-                // Third click: Turn the third slot blue and border green, and fill the red and yellow slots
-                clickCount = 3; // Increment the click count to 3
-                blueSlot.style.backgroundColor = '#3ABFF0';
-                colorBorder.style.backgroundColor = '#2EC998';
-                redSlot.style.backgroundColor = '#EB3148'; // Fill the red slot
-                yellowSlot.style.backgroundColor = '#FCB201'; // Fill the yellow slot
-            } else if (clickCount === 3) {
-                // Fourth click: Turn the fourth slot green and display the overlay
-                clickCount = 4; // Increment the click count to 4
-                greenSlot.style.backgroundColor = '#2EC998';
-                colorBorder.style.backgroundColor = '#2EC998';
-                displayOverlay();
+
+            // Update slot colors and border color
+            slotColors.push(getSlotColor(clickCount));
+            updateSlotsColors();
+
+            // Store the selected position
+            selectedPositions.push(currentPosition);
+
+            // Check if all clicks have been made
+            if (clickCount === 4) {
+                overlayVisible = true; // Prevent further clicks
+
+                // Check if the selected positions match the correct combination
+                const correctCombination = [-612, -408, -816, -204];
+                if (JSON.stringify(selectedPositions) === JSON.stringify(correctCombination)) {
+                    // Display success overlay if the combination is correct
+                    displayOverlay(successOverlay);
+                } else {
+                    // Display error overlay if the combination is incorrect
+                    displayOverlay(errorOverlay);
+                }
             }
         }
     });
 
+    // Function to get slot color based on click count
+    function getSlotColor(count) {
+        switch (count) {
+            case 1:
+                return '#EB3148';
+            case 2:
+                return '#FCB201';
+            case 3:
+                return '#3ABFF0';
+            case 4:
+                return '#2EC998';
+            default:
+                return 'transparent';
+        }
+    }
+
     // Function to display the overlay
-    function displayOverlay() {
+    function displayOverlay(overlay) {
         overlayVisible = true;
-        if (successOverlay) {
-            successOverlay.style.display = 'block';
+        if (overlay) {
+            overlay.style.display = 'block';
         }
     }
 
     // Event listener for the Undo button
     undoButton.addEventListener('click', function() {
-        // Reset all slot backgrounds to transparent
-        redSlot.style.backgroundColor = 'transparent';
-        yellowSlot.style.backgroundColor = 'transparent';
-        blueSlot.style.backgroundColor = 'transparent';
-        greenSlot.style.backgroundColor = 'transparent';
-        // Reset colorBorder to its initial color
-        colorBorder.style.backgroundColor = '#EB3148';
         // Reset click count and overlay visibility
         clickCount = 0;
         overlayVisible = false;
+        // Reset slot colors and border color
+        slotColors = [];
+        colorBorder.style.backgroundColor = '#EB3148';
+        // Reset the selected positions
+        selectedPositions = [];
         // Hide the success overlay if visible
         if (successOverlay) {
             successOverlay.style.display = 'none';
@@ -171,40 +188,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Event listeners for reel images
-    images.forEach(image => {
-        image.addEventListener('click', function() {
-            const selectedImageId = image.getAttribute('id');
-            if (!selectedImages.includes(selectedImageId)) {
-                selectedImages.push(selectedImageId);
-                image.classList.add('selected');
-                if (selectedImages.length === 4) {
-                    // Check if the selected images form a valid combination
-                    if (isValidCombination(selectedImages)) {
-                        successOverlay.style.display = 'block'; // Display success overlay
-                    } else {
-                        errorOverlay.style.display = 'block'; // Display error overlay
-                    }
-                }
-            }
-        });
-    });
-
-    // Function to check if the selected images form a valid combination
-    function isValidCombination(selectedImages) {
-        // Define the valid combinations here
-        const validCombinations = [
-            ['leeuw', 'giraf', 'koe', 'krokodil']
-        ];
-        // Map selected image IDs to animal names
-        const selectedAnimalNames = selectedImages.map(image => {
-            // Extract animal name from image ID (assuming image IDs are in the format 'image-<animal>')
-            return image.split('-')[1];
-        });
-        // Check if any of the valid combinations match the selected animal names
-        return validCombinations.some(combination => {
-            // Check if every animal in the combination is present in the selected animal names
-            return combination.every(animal => selectedAnimalNames.includes(animal));
-        });
+    // Function to update slot colors
+    function updateSlotsColors() {
+        redSlot.style.backgroundColor = slotColors[0] || 'transparent';
+        yellowSlot.style.backgroundColor = slotColors[1] || 'transparent';
+        blueSlot.style.backgroundColor = slotColors[2] || 'transparent';
+        greenSlot.style.backgroundColor = slotColors[3] || 'transparent';
     }
+
 });
