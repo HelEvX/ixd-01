@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const images = reel.querySelectorAll("img");
     const upButton = document.getElementById("up");
     const downButton = document.getElementById("down");
-    const imageHeight = images[0].clientHeight + 4; // Account for the extra 4 pixels
+    const imageHeight = images[0].clientHeight + 4; 
     const totalImages = images.length;
     const reelHeight = totalImages * imageHeight;
     const cloneImages = [...images].map(image => image.cloneNode(true));

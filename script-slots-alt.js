@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const yellowSlot = document.querySelector('.slot.yellow');
     const blueSlot = document.querySelector('.slot.blue');
     const greenSlot = document.querySelector('.slot.green');
-    const colorBorder = document.getElementById('colorborder');
     const choiceCircle = document.getElementById('choicecircle');
     const buttons = document.querySelectorAll('.custom-button'); // Get all buttons
     const undoButton = document.getElementById('undoButton'); // Get the Undo button
@@ -158,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function getSlotColor(count) {
         switch (count) {
             case 1:
-                return '#fe536b';
+                return '#FE536B';
             case 2:
                 return '#fdb651';
             case 3:
@@ -170,27 +169,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Function to change the background color of colorBorder
+    // Function to change the stroke color of the circle
     function changeBorderColor() {
-        // Only update the background color if the success overlay is not visible
+        // Only update the border color if the success overlay is not visible
         if (!overlayVisible) {
-            let backgroundColor;
+            let borderColor;
             switch (clickCount) {
                 case 1:
-                    backgroundColor = '#fdb651'; // Color for click 1
+                    borderColor = '#fdb651'; // Color for click 1
                     break;
                 case 2:
-                    backgroundColor = '#529fff'; // Color for click 2
+                    borderColor = '#529fff'; // Color for click 2
                     break;
                 case 3:
-                    backgroundColor = '#66cd5c'; // Color for click 3
+                    borderColor = '#66cd5c'; // Color for click 3
                     break;
                 default:
-                    backgroundColor = '#fe536b'; // Default color
+                    borderColor = '#FE536B'; // Default color
                     break;
             }
-            // Apply the color to the background
-            colorBorder.style.backgroundColor = backgroundColor;
+            // Apply the color to the border
+            choiceCircle.style.borderColor = borderColor;
         }
     }
 
@@ -213,10 +212,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(redirectToStaticScreen, 2000);
             } else if (overlay === errorOverlay && soundButton.classList.contains('active')) {
                 playSound('error');
-            }
-            // Update the background color of colorBorder to green when success overlay is displayed
-            if (overlay === successOverlay) {
-                colorBorder.style.backgroundColor = '#66cd5c';
             }
         }
     }
